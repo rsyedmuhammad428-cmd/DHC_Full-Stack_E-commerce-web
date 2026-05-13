@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart - Brand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main class="container" style="margin-top: 30px;">
+        <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 25px;">My cart (<span id="cart-item-count">0</span>)</h2>
+
+        <div class="cart-layout">
+            <!-- Cart Items List -->
+            <div class="cart-items">
+                <div class="card" id="cart-items-container" style="padding: 0;">
+                    <!-- Items will be injected here by JS -->
+                    <div style="padding: 40px; text-align: center; color: var(--gray-color);">
+                        Your cart is empty. <a href="products.html" style="color: var(--primary-color);">Start shopping</a>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; margin-top: 20px; flex-wrap: wrap; gap: 15px;">
+                    <a href="products.html" class="btn btn-primary" style="display: flex; align-items: center; gap: 10px;"><i class="fas fa-arrow-left"></i> Back to shop</a>
+                    <button class="btn btn-outline" onclick="clearCart()" style="color: var(--primary-color);">Remove all</button>
+                </div>
+
+                <div class="cart-features">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 45px; height: 45px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fas fa-lock" style="color: var(--gray-color);"></i></div>
+                        <div>
+                            <div style="font-weight: 600;">Secure payment</div>
+                            <div style="font-size: 13px; color: var(--gray-color);">Have you ever finally just</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 45px; height: 45px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fas fa-comment-dots" style="color: var(--gray-color);"></i></div>
+                        <div>
+                            <div style="font-weight: 600;">Customer support</div>
+                            <div style="font-size: 13px; color: var(--gray-color);">Have you ever finally just</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 45px; height: 45px; background: #eee; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fas fa-truck" style="color: var(--gray-color);"></i></div>
+                        <div>
+                            <div style="font-weight: 600;">Free delivery</div>
+                            <div style="font-size: 13px; color: var(--gray-color);">Have you ever finally just</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Sidebar -->
+            <aside class="cart-summary">
+                <div class="card" style="margin-bottom: 20px; padding: 20px;">
+                    <p style="margin-bottom: 15px; color: var(--gray-color);">Have a coupon?</p>
+                    <div style="display: flex; border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden;">
+                        <input id="coupon-input" type="text" placeholder="Add coupon" style="flex: 1; border: none; padding: 10px; outline: none;">
+                        <button id="coupon-apply" class="btn btn-white" style="border: none; border-left: 1px solid var(--border-color); color: var(--primary-color);" type="button">Apply</button>
+                    </div>
+                </div>
+
+                <div class="card" style="padding: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: var(--gray-color);">
+                        <span>Subtotal:</span><span id="summary-subtotal">$0.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color: #eb001b;">
+                        <span>Discount:</span><span id="summary-discount">-$0.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; color: #00b517;">
+                        <span>Tax:</span><span id="summary-tax">+$0.00</span>
+                    </div>
+                    <hr style="border: none; border-top: 1px solid var(--border-color); margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 25px; font-weight: 700; font-size: 18px;">
+                        <span>Total:</span><span id="summary-total">$0.00</span>
+                    </div>
+                    <button id="checkout-button" class="btn btn-primary" style="width: 100%; padding: 15px; background: #00b517; font-size: 18px; border: none;" type="button">Checkout</button>
+                    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" style="height: 15px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height: 15px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="Paypal" style="height: 15px;">
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Saved for later (populated from localStorage) -->
+        <section style="margin-top: 50px;">
+            <div class="card" style="padding: 24px;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 25px;">Saved for later</h3>
+                <div id="saved-later-dynamic"></div>
+            </div>
+        </section>
+
+        <!-- Blue Banner -->
+        <div class="blue-banner">
+            <div>
+                <h3 style="font-size: 20px; margin-bottom: 5px;">Super discount on more than 100 USD</h3>
+                <p style="opacity: 0.8;">Have you ever finally just write dummy info</p>
+            </div>
+            <button class="btn btn-orange" style="padding: 10px 30px; font-weight: bold;">Shop now</button>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="catalog-products.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

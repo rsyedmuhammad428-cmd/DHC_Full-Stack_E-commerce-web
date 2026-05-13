@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - Brand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main class="auth-page">
+        <div class="card auth-form-card">
+            <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">Sign in</h2>
+            <p style="color: var(--gray-color); margin-bottom: 24px; font-size: 14px;">Welcome back — continue to checkout and orders.</p>
+            <form id="login-form">
+                <label class="checkout-field checkout-field-span2" style="display: block;">
+                    <span>Email</span>
+                    <input type="email" name="email" autocomplete="username" required>
+                </label>
+                <label class="checkout-field checkout-field-span2" style="display: block; margin-top: 16px;">
+                    <span>Password</span>
+                    <input type="password" name="password" autocomplete="current-password" required minlength="6">
+                </label>
+                <button type="submit" id="auth-submit" class="btn btn-primary" style="width: 100%; margin-top: 24px; padding: 12px;">Sign in</button>
+            </form>
+            <p style="margin-top: 20px; font-size: 14px; color: var(--gray-color); text-align: center;">
+                New here? <a id="register-from-login" href="register.html" style="color: var(--primary-color);">Create an account</a>
+            </p>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="catalog-products.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

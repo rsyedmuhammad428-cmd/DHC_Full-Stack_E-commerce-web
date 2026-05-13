@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Brand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main class="container" style="margin-top: 20px;">
+        <!-- Breadcrumbs -->
+        <nav style="margin-bottom: 20px; color: var(--gray-color); font-size: 14px;">
+            <a href="index.html">Home</a> <i class="fas fa-chevron-right" style="font-size: 10px; margin: 0 5px;"></i>
+            <a href="#">Clothings</a> <i class="fas fa-chevron-right" style="font-size: 10px; margin: 0 5px;"></i>
+            <a href="#">Men's wear</a> <i class="fas fa-chevron-right" style="font-size: 10px; margin: 0 5px;"></i>
+            <span style="color: var(--dark-color);">Summer clothing</span>
+        </nav>
+
+        <div class="products-layout">
+            <!-- Sidebar Filters -->
+            <aside class="filters-sidebar">
+                <button id="filters-toggle" class="btn btn-white filters-toggle" type="button">Show filters</button>
+                <div class="filter-section" style="border-top: 1px solid var(--border-color); padding: 15px 0;">
+                    <h4 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">Category <i class="fas fa-chevron-up"></i></h4>
+                    <ul id="category-filter-list" style="color: var(--gray-color); line-height: 2;">
+                        <li style="cursor: pointer; color: var(--gray-color);">Loading categories…</li>
+                    </ul>
+                </div>
+                <div class="filter-section" style="border-top: 1px solid var(--border-color); padding: 15px 0;">
+                    <h4 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">Brands <i class="fas fa-chevron-up"></i></h4>
+                    <ul id="brand-filter-list" style="line-height: 2; color: var(--gray-color);">
+                        <li style="cursor: pointer; color: var(--gray-color);">Loading brands…</li>
+                    </ul>
+                </div>
+                <div class="filter-section" style="border-top: 1px solid var(--border-color); padding: 15px 0;">
+                    <h4 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">Features <i class="fas fa-chevron-up"></i></h4>
+                    <ul style="line-height: 2;">
+                        <li><input type="checkbox" checked> Metallic</li>
+                        <li><input type="checkbox"> Plastic cover</li>
+                        <li><input type="checkbox"> 8GB Ram</li>
+                        <li><input type="checkbox"> Super power</li>
+                        <li style="color: var(--primary-color);">See all</li>
+                    </ul>
+                </div>
+                <div class="filter-section" style="border-top: 1px solid var(--border-color); padding: 15px 0;">
+                    <h4 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">Price range <i class="fas fa-chevron-up"></i></h4>
+                    <div style="margin-bottom: 15px;">
+                        <input id="price-range-slider" type="range" min="0" max="8000" value="8000" style="width: 100%;">
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <div style="flex: 1;"><label style="font-size: 12px;">Min</label><input id="price-min" type="number" value="0" min="0" style="width: 100%; padding: 5px; border: 1px solid var(--border-color); border-radius: 4px;"></div>
+                        <div style="flex: 1;"><label style="font-size: 12px;">Max</label><input id="price-max" type="number" value="8000" min="0" max="8000" style="width: 100%; padding: 5px; border: 1px solid var(--border-color); border-radius: 4px;"></div>
+                    </div>
+                    <button id="price-apply" class="btn btn-white" style="width: 100%; color: var(--primary-color);" type="button">Apply</button>
+                </div>
+            </aside>
+
+            <!-- Product List Area -->
+            <div class="products-content">
+                <div class="card products-toolbar" style="padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <div><span id="results-count">0</span> items in <b id="results-category">All Products</b></div>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <label><input id="verified-only" type="checkbox"> Verified only</label>
+                        <select id="sort-select" style="padding: 5px 10px; border: 1px solid var(--border-color); border-radius: 4px;">
+                            <option value="featured">Featured</option>
+                            <option value="price-low">Price: low to high</option>
+                            <option value="price-high">Price: high to low</option>
+                            <option value="rating">Top rated</option>
+                        </select>
+                        <div style="display: flex; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden;">
+                            <button onclick="setView(this, 'grid')" style="padding: 5px 10px; border: none; background: #eee; cursor: pointer;"><i class="fas fa-th"></i></button>
+                            <button onclick="setView(this, 'list')" style="padding: 5px 10px; border: none; background: white; cursor: pointer; border-left: 1px solid var(--border-color);"><i class="fas fa-list"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Filters -->
+                <div id="active-filters" style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <span onclick="clearF()" style="color: var(--primary-color); cursor: pointer; align-self: center;">Clear all filter</span>
+                </div>
+
+                <!-- Grid of Products -->
+                <div id="product-listing-grid" class="product-grid">
+                    <!-- Products will be injected by script.js -->
+                </div>
+
+                <!-- Pagination -->
+                <div style="margin-top: 40px; display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
+                    <select style="padding: 5px 10px; border: 1px solid var(--border-color); border-radius: 4px;">
+                        <option>Show 10</option>
+                    </select>
+                    <div style="display: flex; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; background: white;">
+                        <button style="padding: 8px 15px; border: none; border-right: 1px solid var(--border-color); background: white;"><i class="fas fa-chevron-left"></i></button>
+                        <button style="padding: 8px 15px; border: none; border-right: 1px solid var(--border-color); background: #eee;">1</button>
+                        <button style="padding: 8px 15px; border: none; border-right: 1px solid var(--border-color); background: white;">2</button>
+                        <button style="padding: 8px 15px; border: none; border-right: 1px solid var(--border-color); background: white;">3</button>
+                        <button style="padding: 8px 15px; border: none; background: white;"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="catalog-products.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

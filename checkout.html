@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Brand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="site-header"></div>
+
+    <main class="container checkout-page-shell" style="margin-top: 30px;">
+        <nav aria-label="Breadcrumb" style="margin-bottom: 24px; color: var(--gray-color); font-size: 14px;">
+            <a href="index.html">Home</a>
+            <i class="fas fa-chevron-right" style="font-size: 10px; margin: 0 8px;"></i>
+            <a href="cart.html">Cart</a>
+            <i class="fas fa-chevron-right" style="font-size: 10px; margin: 0 8px;"></i>
+            <span style="color: var(--dark-color);">Checkout</span>
+        </nav>
+
+        <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 24px;">Checkout</h2>
+
+        <div class="checkout-layout">
+            <div class="checkout-main">
+                <form id="checkout-form" class="card" style="padding: 24px;">
+                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Shipping address</h3>
+                    <div class="checkout-form-grid">
+                        <label class="checkout-field checkout-field-span2">
+                            <span>Street address</span>
+                            <input id="ship-address" name="address" type="text" required autocomplete="street-address" placeholder="Building, street">
+                        </label>
+                        <label class="checkout-field">
+                            <span>City</span>
+                            <input id="ship-city" name="city" type="text" required autocomplete="address-level2">
+                        </label>
+                        <label class="checkout-field">
+                            <span>Postal code</span>
+                            <input id="ship-postal" name="postalCode" type="text" required autocomplete="postal-code">
+                        </label>
+                        <label class="checkout-field checkout-field-span2">
+                            <span>Country</span>
+                            <input id="ship-country" name="country" type="text" required autocomplete="country-name" placeholder="Country">
+                        </label>
+                    </div>
+
+                    <hr style="border: none; border-top: 1px solid var(--border-color); margin: 28px 0;">
+
+                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Payment</h3>
+                    <fieldset class="checkout-payment-options" style="border: none; padding: 0;">
+                        <legend class="visually-hidden">Payment method</legend>
+                        <label class="pay-option"><input type="radio" name="payment" value="PayPal" checked> PayPal</label>
+                        <label class="pay-option"><input type="radio" name="payment" value="Card"> Credit / debit card</label>
+                        <label class="pay-option"><input type="radio" name="payment" value="Cash on Delivery"> Cash on delivery</label>
+                    </fieldset>
+
+                    <button type="submit" id="checkout-submit" class="btn btn-primary" style="margin-top: 28px; width: 100%; max-width: 320px; padding: 14px; font-size: 16px; background: #00b517; border: none;">
+                        Place order
+                    </button>
+                    <p style="margin-top: 16px; font-size: 13px; color: var(--gray-color);">
+                        <i class="fas fa-lock"></i> You will be asked to sign in if you are not already.
+                    </p>
+                </form>
+            </div>
+
+            <aside class="checkout-aside">
+                <div class="card" style="padding: 20px; margin-bottom: 16px;">
+                    <h3 style="font-size: 17px; font-weight: 600; margin-bottom: 16px;">Order summary</h3>
+                    <div id="checkout-order-lines" class="checkout-order-lines"></div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 12px; color: var(--gray-color);">
+                        <span>Subtotal:</span><span id="co-sub">$0.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 8px; color: #eb001b;">
+                        <span>Discount:</span><span id="co-disc">-$0.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 8px; color: #00b517;">
+                        <span>Tax:</span><span id="co-tax">+$0.00</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 8px; color: var(--gray-color);">
+                        <span>Shipping:</span><span id="co-ship">$0.00</span>
+                    </div>
+                    <hr style="border: none; border-top: 1px solid var(--border-color); margin: 16px 0;">
+                    <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 18px;">
+                        <span>Total:</span><span id="co-total">$0.00</span>
+                    </div>
+                </div>
+                <a href="cart.html" class="btn btn-outline" style="display: block; text-align: center; width: 100%;">Back to cart</a>
+            </aside>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="catalog-products.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
