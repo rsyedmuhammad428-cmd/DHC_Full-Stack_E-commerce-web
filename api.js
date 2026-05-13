@@ -1,7 +1,6 @@
 const API_URL = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost'
     ? 'http://localhost:5000/api' 
-    : '/api';
-// Helper function to handle fetch calls
+    : '/api'; // 👈 Relative path works perfectly now because they share the same domain!
 const apiCall = async (endpoint, method = "GET", body = null, token = null) => {
     const headers = {
         "Content-Type": "application/json",
