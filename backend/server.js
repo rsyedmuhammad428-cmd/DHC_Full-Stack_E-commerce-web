@@ -12,11 +12,19 @@ const orderRoutes = require("./routes/orderRoutes");
 
 const app = express();
 
+// Connect Database (Vercel serverless approach)
+connectDB().catch(err => {
+    console.error("Database connection failed:", err.message);
+});
+
 // Body parser
 app.use(express.json());
 
-// Enable CORS
-app.use(cors());
+// Enable CORS (Allow requests from your frontend)
+app.use(cors({
+    origin: ["http://127.0.0.1:3000", "http://localhost:3000", "https://dhc-full-stack-e-commerce-web.vercel.app"],
+    credentials: true
+}));
 
 // Mount routers
 app.use("/api/auth", userRoutes);
@@ -31,20 +39,13 @@ app.get("/", (req, res) => {
 // Error handler
 app.use(errorHandler);
 
+// Keep app.listen ONLY for local development testing
 const PORT = process.env.PORT || 5000;
+if (process.env.NODE_ENV !== "production") {
+    app.listen(PORT, () => {
+        console.log(`Server running locally on port ${PORT}`);
+    });
+}
 
-const start = async () => {
-    try {
-        await connectDB();
-        app.listen(PORT, () => {
-            console.log(`Server running on ${PORT}`);
-            console.log(`http://localhost:${PORT}`);
-        });
-    } catch (err) {
-        console.error("Cannot start server without database:", err.message);
-        process.exit(1);
-    }
-};
-
-start();
-
+// CRITICAL FOR VERCEL: Export the app instance
+module.exports = app;
